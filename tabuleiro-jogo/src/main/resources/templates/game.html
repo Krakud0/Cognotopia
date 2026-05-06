@@ -1,185 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cognotopia — Partida</title>
-  <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css"/>
+  <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css" />
 </head>
+
 <body>
-<a class="skip-link" href="#tabuleiro-principal">Ir para o tabuleiro</a>
-<div class="wrap">
-  <div th:if="${erro}" class="alert-error" role="alert" th:text="${erro}">Erro</div>
+  <a class="skip-link" href="#tabuleiro-principal">Ir para o tabuleiro</a>
+  <div class="wrap">
+    <div th:if="${erro}" class="alert-error" role="alert" th:text="${erro}">Erro</div>
 
-  <div th:if="${session.phase.name() == 'FINISHED'}" class="winner-banner" role="status" aria-live="polite">
-    <span th:text="${session.currentTeam.name}">Participante</span> chegou à meta! Parabéns!
-  </div>
-
-  <header class="game-header">
-    <div>
-      <p style="margin:0;font-size:0.85rem;font-weight:700;color:#0369a1">Cognotopia</p>
-      <h1 style="margin:0;font-size:1.35rem">Tabuleiro</h1>
+    <div th:if="${session.phase?.name() == 'FINISHED'}" class="winner-banner" role="status" aria-live="polite">
+      <span th:text="${session.currentTeam.name}">Participante</span> chegou à meta! Parabéns!
     </div>
-    <p class="turn-badge" th:if="${session.phase.name() == 'PLAYING'}">
-      Vez de: <span th:text="${session.currentTeam.name}">Dupla</span>
-    </p>
-  </header>
 
-  <div class="game-layout">
-    <section id="tabuleiro-principal" class="board-stage" aria-label="Tabuleiro e posição das duplas">
-      <img th:src="@{|${board.backgroundImage}|}" src="/images/board-bg.svg" alt="Tabuleiro Cognotopia"/>
-      <div th:each="tv : ${teamViews}"
-           class="token"
-           th:classappend="'token-' + ${tv.colorIndex}"
-           th:style="|left: ${tv.cell.leftPct}%; top: ${tv.cell.topPct}%; transform: translate(calc(-50% + ${tv.colorIndex * 14}px), -50%);|"
-           th:attr="aria-label=${tv.name + ' na casa ' + tv.cell.id}">
-        <span class="token-label" th:text="${tv.colorIndex + 1}">1</span>
+    <header class="game-header">
+      <div>
+        <p style="margin:0;font-size:0.85rem;font-weight:700;color:#0369a1">Cognotopia</p>
+        <h1 style="margin:0;font-size:1.35rem">Tabuleiro</h1>
       </div>
-    </section>
+      <p class="turn-badge" th:if="${session.phase.name() == 'PLAYING'}">
+        Vez de: <span th:text="${session.currentTeam.name}">Dupla</span>
+      </p>
+    </header>
 
-    <aside class="sidebar" aria-label="Jogadores e controles">
-      <div class="sidebar-card">
-        <h2 class="sidebar-title" th:text="${session.participantLabel + 's'}">Participantes</h2>
-        <ol class="team-list">
-          <li th:each="t, iter : ${session.teams}"
-              th:classappend="${iter.index == session.currentTeamIndex ? 'active' : ''}">
-            <span class="team-dot" th:classappend="'token-' + ${iter.index}"></span>
-            <span th:text="${t.name}">Dupla</span>
-          </li>
-        </ol>
-      </div>
-
-      <div class="sidebar-card" th:if="${session.phase.name() == 'PLAYING'}">
-        <h2 class="sidebar-title">Dado</h2>
-        <div class="dice" id="dice" th:attr="data-last-roll=${session.lastRoll != null ? session.lastRoll : ''}">
-          <span th:text="${session.lastRoll != null ? session.lastRoll : '?'}">?</span>
+    <div class="game-layout">
+      <section id="tabuleiro-principal" class="board-stage" aria-label="Tabuleiro e posição das duplas">
+        <img th:src="@{|${board.backgroundImage}|}" src="/images/board-bg.svg" alt="Tabuleiro Cognotopia" />
+        <div th:each="tv : ${teamViews}" class="token" th:classappend="'token-' + ${tv.colorIndex}"
+          th:style="|left: ${tv.cell.leftPct}%; top: ${tv.cell.topPct}%; transform: translate(calc(-50% + ${tv.colorIndex * 14}px), -50%);|"
+          th:attr="aria-label=${tv.name + ' na casa ' + tv.cell.id}">
+          <span class="token-label" th:text="${tv.colorIndex + 1}">1</span>
         </div>
-        <form th:if="${!session.awaitingChallenge and !session.awaitingOpponentSelection}"
-              th:action="@{/jogo/rolar}" method="post" style="margin-top:0.75rem">
-          <button type="submit" class="btn" style="width:100%">Rolar</button>
-        </form>
-        <p th:if="${session.awaitingChallenge}" style="margin:0.75rem 0 0;font-weight:600;color:#3730a3">
-          Resolva a ação da casa para continuar.
-        </p>
-        <p th:if="${session.awaitingOpponentSelection}" style="margin:0.75rem 0 0;font-weight:600;color:#9a3412">
-          Escolham uma dupla adversária para voltar 4 casas.
-        </p>
-      </div>
+      </section>
 
-      <div class="sidebar-card">
-        <h2 class="sidebar-title">Manual rápido</h2>
-        <ul class="manual">
-          <li>Role o dado (1–6) e avance.</li>
-          <li>O conteúdo da casa aparece só quando alguém para nela.</li>
-          <li>Verde: você pode aceitar ou recusar (recusar = 1 rodada sem jogar).</li>
-          <li>Laranja: pode trocar o desafio se não der pra fazer.</li>
-          <li>Amarelo: casa livre — passa a vez.</li>
-          <li>Vermelho: efeitos do tabuleiro (avançar/voltar/pular vez etc.).</li>
+      <aside class="sidebar" aria-label="Jogadores e controles">
+        <div class="sidebar-card">
+          <h2 class="sidebar-title" th:text="${session.participantLabel + 's'}">Participantes</h2>
+          <ol class="team-list">
+            <li th:each="t, iter : ${session.teams}"
+              th:classappend="${iter.index == session.currentTeamIndex ? 'active' : ''}">
+              <span class="team-dot" th:classappend="'token-' + ${iter.index}"></span>
+              <span th:text="${t.name}">Dupla</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="sidebar-card" th:if="${session.phase.name() == 'PLAYING'}">
+          <h2 class="sidebar-title">Dado</h2>
+          <div class="dice" id="dice" th:attr="data-last-roll=${session.lastRoll != null ? session.lastRoll : ''}">
+            <span th:text="${session.lastRoll != null ? session.lastRoll : '?'}">?</span>
+          </div>
+          <form th:if="${!session.awaitingChallenge and !session.awaitingOpponentSelection}" th:action="@{/jogo/rolar}"
+            method="post" style="margin-top:0.75rem">
+            <button type="submit" class="btn" style="width:100%">Rolar</button>
+          </form>
+          <p th:if="${session.awaitingChallenge}" style="margin:0.75rem 0 0;font-weight:600;color:#3730a3">
+            Resolva a ação da casa para continuar.
+          </p>
+          <p th:if="${session.awaitingOpponentSelection}" style="margin:0.75rem 0 0;font-weight:600;color:#9a3412">
+            Escolham uma dupla adversária para voltar 4 casas.
+          </p>
+        </div>
+
+        <div class="sidebar-card">
+          <h2 class="sidebar-title">Manual rápido</h2>
+          <ul class="manual">
+            <li>Role o dado (1–6) e avance.</li>
+            <li>O conteúdo da casa aparece só quando alguém para nela.</li>
+            <li>Verde: você pode aceitar ou recusar (recusar = 1 rodada sem jogar).</li>
+            <li>Laranja: pode trocar o desafio se não der pra fazer.</li>
+            <li>Amarelo: casa livre — passa a vez.</li>
+            <li>Vermelho: efeitos do tabuleiro (avançar/voltar/pular vez etc.).</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="btn-row">
+      <form th:action="@{/nova-partida}" method="post">
+        <button type="submit" class="btn btn-secondary">Nova partida</button>
+      </form>
+    </div>
+
+    <dialog class="challenge-dialog" th:if="${session.awaitingChallenge}" th:open="${session.awaitingChallenge}"
+      aria-labelledby="challenge-title" aria-modal="true">
+      <div class="challenge-inner">
+        <th:block th:with="cell=${pendingCell}">
+          <h2 id="challenge-title"
+            th:text="${challenge != null ? challenge.titulo : (cell != null and cell.color.name() == 'AMARELO' ? 'Casa amarela (livre)' : 'Ação da casa')}">
+            Ação da casa
+          </h2>
+
+          <th:block th:if="${challenge != null}">
+            <ul class="dim-tags" th:if="${!challenge.dimensoes.isEmpty()}">
+              <li th:each="d : ${challenge.dimensoes}"
+                th:text="${d.name() == 'FISICO' ? 'Físico' : (d.name() == 'COGNITIVO' ? 'Cognitivo' : 'Emocional')}"
+                th:classappend="${d.name() == 'FISICO' ? 'fisico' : (d.name() == 'COGNITIVO' ? 'cognitivo' : 'emocional')}">
+                Físico</li>
+            </ul>
+            <p th:text="${challenge.instrucoes}">Instruções</p>
+
+            <div th:if="${cell != null and cell.color.name() == 'VERDE'}" style="margin-top:0.75rem">
+              <label for="resposta" style="font-weight:700">Resposta (opcional)</label>
+              <input id="resposta" type="text" name="resposta" maxlength="80" autocomplete="off"
+                placeholder="Escreva a resposta aqui (não é corrigido automaticamente)" />
+            </div>
+
+            <p th:if="${challenge.tempoSugeridoSeg != null}" style="color:#64748b;font-size:0.95rem">
+              Tempo sugerido: <span th:text="${challenge.tempoSugeridoSeg}">60</span> segundos
+            </p>
+          </th:block>
+
+          <th:block th:if="${cell != null and cell.color.name() == 'AMARELO'}">
+            <p>Casa livre: não tem carta. Passe a vez para a próxima dupla.</p>
+          </th:block>
+
+          <div class="btn-row" style="margin-top:1rem">
+            <form th:if="${cell != null and cell.color.name() == 'AMARELO'}" th:action="@{/jogo/acao/passar}"
+              method="post">
+              <button type="submit" class="btn btn-secondary" style="width:100%">OK, passar a vez</button>
+            </form>
+
+            <th:block th:if="${cell != null and cell.color.name() == 'VERDE'}">
+              <form th:action="@{/jogo/acao/aceitar}" method="post" style="flex:1">
+                <button type="submit" class="btn btn-success" style="width:100%">Aceitar (verde)</button>
+              </form>
+              <form th:action="@{/jogo/acao/recusar}" method="post" style="flex:1">
+                <button type="submit" class="btn" style="width:100%;background:#ef4444">Recusar (vermelho)</button>
+              </form>
+            </th:block>
+
+            <th:block th:if="${cell != null and cell.color.name() == 'LARANJA'}">
+              <form th:action="@{/jogo/acao/trocar}" method="post" style="flex:1">
+                <button type="submit" class="btn" style="width:100%;background:#eab308;color:#0f172a">Trocar desafio
+                  (amarelo)</button>
+              </form>
+              <form th:action="@{/jogo/desafio/concluir}" method="post" style="flex:1">
+                <button type="submit" class="btn btn-success" style="width:100%">Concluir</button>
+              </form>
+            </th:block>
+
+            <th:block th:if="${cell != null and (cell.color.name() == 'MARROM' or cell.color.name() == 'VERMELHO')}">
+              <form th:action="@{/jogo/desafio/concluir}" method="post" style="flex:1">
+                <button type="submit" class="btn btn-success" style="width:100%">OK</button>
+              </form>
+            </th:block>
+          </div>
+        </th:block>
+      </div>
+    </dialog>
+
+    <dialog class="challenge-dialog opponent-dialog" th:if="${session.awaitingOpponentSelection}"
+      th:open="${session.awaitingOpponentSelection}" aria-labelledby="opponent-title" aria-modal="true">
+      <div class="challenge-inner">
+        <h2 id="opponent-title">Escolher adversários</h2>
+        <p>Como no tabuleiro físico: escolham <strong>uma dupla adversária</strong>. Ela recua <strong>4 casas</strong>
+          (o jogo atualiza o pinho).</p>
+        <ul class="opponent-list">
+          <th:block th:each="t, iter : ${session.teams}">
+            <li th:if="${iter.index != session.currentTeamIndex}">
+              <form th:action="@{/jogo/adversario}" method="post">
+                <input type="hidden" name="indiceDupla" th:value="${iter.index}" />
+                <button type="submit" class="btn btn-secondary opponent-btn" th:text="${t.name}">Dupla</button>
+              </form>
+            </li>
+          </th:block>
         </ul>
       </div>
-    </aside>
+    </dialog>
+
+    <footer class="site-footer">
+      <p>Jogo com supervisão adulta. Desafios físicos: escolham sempre movimentos seguros para o espaço onde estão.</p>
+    </footer>
   </div>
-
-  <div class="btn-row">
-    <form th:action="@{/nova-partida}" method="post">
-      <button type="submit" class="btn btn-secondary">Nova partida</button>
-    </form>
-  </div>
-
-  <dialog class="challenge-dialog"
-          th:if="${session.awaitingChallenge}"
-          th:open="${session.awaitingChallenge}"
-          aria-labelledby="challenge-title"
-          aria-modal="true">
-    <div class="challenge-inner">
-      <th:block th:with="cell=${pendingCell}">
-        <h2 id="challenge-title"
-            th:text="${challenge != null ? challenge.titulo : (cell != null and cell.color.name() == 'AMARELO' ? 'Casa amarela (livre)' : 'Ação da casa')}">
-          Ação da casa
-        </h2>
-
-        <th:block th:if="${challenge != null}">
-          <ul class="dim-tags" th:if="${!challenge.dimensoes.isEmpty()}">
-            <li th:each="d : ${challenge.dimensoes}"
-                th:text="${d.name() == 'FISICO' ? 'Físico' : (d.name() == 'COGNITIVO' ? 'Cognitivo' : 'Emocional')}"
-                th:classappend="${d.name() == 'FISICO' ? 'fisico' : (d.name() == 'COGNITIVO' ? 'cognitivo' : 'emocional')}">Físico</li>
-          </ul>
-          <p th:text="${challenge.instrucoes}">Instruções</p>
-
-          <div th:if="${cell != null and cell.color.name() == 'VERDE'}" style="margin-top:0.75rem">
-            <label for="resposta" style="font-weight:700">Resposta (opcional)</label>
-            <input id="resposta" type="text" name="resposta" maxlength="80" autocomplete="off"
-                   placeholder="Escreva a resposta aqui (não é corrigido automaticamente)"/>
-          </div>
-
-          <p th:if="${challenge.tempoSugeridoSeg != null}" style="color:#64748b;font-size:0.95rem">
-            Tempo sugerido: <span th:text="${challenge.tempoSugeridoSeg}">60</span> segundos
-          </p>
-        </th:block>
-
-        <th:block th:if="${cell != null and cell.color.name() == 'AMARELO'}">
-          <p>Casa livre: não tem carta. Passe a vez para a próxima dupla.</p>
-        </th:block>
-
-        <div class="btn-row" style="margin-top:1rem">
-          <form th:if="${cell != null and cell.color.name() == 'AMARELO'}"
-                th:action="@{/jogo/acao/passar}" method="post">
-            <button type="submit" class="btn btn-secondary" style="width:100%">OK, passar a vez</button>
-          </form>
-
-          <th:block th:if="${cell != null and cell.color.name() == 'VERDE'}">
-            <form th:action="@{/jogo/acao/aceitar}" method="post" style="flex:1">
-              <button type="submit" class="btn btn-success" style="width:100%">Aceitar (verde)</button>
-            </form>
-            <form th:action="@{/jogo/acao/recusar}" method="post" style="flex:1">
-              <button type="submit" class="btn" style="width:100%;background:#ef4444">Recusar (vermelho)</button>
-            </form>
-          </th:block>
-
-          <th:block th:if="${cell != null and cell.color.name() == 'LARANJA'}">
-            <form th:action="@{/jogo/acao/trocar}" method="post" style="flex:1">
-              <button type="submit" class="btn" style="width:100%;background:#eab308;color:#0f172a">Trocar desafio (amarelo)</button>
-            </form>
-            <form th:action="@{/jogo/desafio/concluir}" method="post" style="flex:1">
-              <button type="submit" class="btn btn-success" style="width:100%">Concluir</button>
-            </form>
-          </th:block>
-
-          <th:block th:if="${cell != null and (cell.color.name() == 'MARROM' or cell.color.name() == 'VERMELHO')}">
-            <form th:action="@{/jogo/desafio/concluir}" method="post" style="flex:1">
-              <button type="submit" class="btn btn-success" style="width:100%">OK</button>
-            </form>
-          </th:block>
-        </div>
-      </th:block>
-    </div>
-  </dialog>
-
-  <dialog class="challenge-dialog opponent-dialog"
-          th:if="${session.awaitingOpponentSelection}"
-          th:open="${session.awaitingOpponentSelection}"
-          aria-labelledby="opponent-title"
-          aria-modal="true">
-    <div class="challenge-inner">
-      <h2 id="opponent-title">Escolher adversários</h2>
-      <p>Como no tabuleiro físico: escolham <strong>uma dupla adversária</strong>. Ela recua <strong>4 casas</strong> (o jogo atualiza o pinho).</p>
-      <ul class="opponent-list">
-        <th:block th:each="t, iter : ${session.teams}">
-          <li th:if="${iter.index != session.currentTeamIndex}">
-            <form th:action="@{/jogo/adversario}" method="post">
-              <input type="hidden" name="indiceDupla" th:value="${iter.index}"/>
-              <button type="submit" class="btn btn-secondary opponent-btn" th:text="${t.name}">Dupla</button>
-            </form>
-          </li>
-        </th:block>
-      </ul>
-    </div>
-  </dialog>
-
-  <footer class="site-footer">
-    <p>Jogo com supervisão adulta. Desafios físicos: escolham sempre movimentos seguros para o espaço onde estão.</p>
-  </footer>
-</div>
-<script th:src="@{/js/dice.js}" src="/js/dice.js"></script>
+  <script th:src="@{/js/dice.js}" src="/js/dice.js"></script>
 </body>
+
 </html>

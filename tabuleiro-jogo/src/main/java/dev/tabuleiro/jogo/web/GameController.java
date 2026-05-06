@@ -77,7 +77,7 @@ public class GameController {
                 int idx = Math.min(Math.max(t.getPositionIndex(), 0), max);
                 teamViews.add(new TeamView(t.getName(), i, cells.get(idx)));
             }
-            model.addAttribute("session", session);
+            model.addAttribute("gameSession", session);
             model.addAttribute("board", content.board());
             model.addAttribute("teamViews", teamViews);
             if (session.isAwaitingChallenge()) {
