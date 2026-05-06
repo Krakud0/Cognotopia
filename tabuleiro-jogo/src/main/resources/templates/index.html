@@ -34,9 +34,9 @@
       <div class="field">
         <label id="qtdLabel" for="numDuplas">Quantas duplas vão jogar?</label>
         <select id="numDuplas" name="numDuplas" required>
-          <option value="2" selected>2 duplas</option>
-          <option value="3">3 duplas</option>
-          <option value="4">4 duplas</option>
+          <option value="2" selected data-n="2">2 duplas</option>
+          <option value="3" data-n="3">3 duplas</option>
+          <option value="4" data-n="4">4 duplas</option>
         </select>
       </div>
       <p id="namesHint" style="margin-top:0.5rem;color:#475569">Opcional: escolham nomes divertidos para cada dupla.</p>
@@ -93,6 +93,7 @@
     const tipo = document.getElementById("tipoParticipante");
     const qtdLabel = document.getElementById("qtdLabel");
     const hint = document.getElementById("namesHint");
+    const qtdSelect = document.getElementById("numDuplas");
     const labels = [
       document.getElementById("nomeLabel1"),
       document.getElementById("nomeLabel2"),
@@ -112,6 +113,10 @@
       const singular = isJogador ? "Jogador" : "Dupla";
       qtdLabel.textContent = `Quantos ${label} vão jogar?`;
       hint.textContent = `Opcional: escolham nomes divertidos para cada ${isJogador ? "jogador" : "dupla"}.`;
+      Array.from(qtdSelect.options).forEach((opt) => {
+        const n = opt.getAttribute("data-n") || opt.value;
+        opt.textContent = `${n} ${label}`;
+      });
       labels.forEach((el, idx) => (el.textContent = `${singular} ${idx + 1}`));
       if (isJogador) {
         inputs[0].placeholder = "Ex.: Ana";

@@ -63,30 +63,35 @@ public class GameController {
     }
 
     @GetMapping("/jogo")
-    public String jogo(Model model) {
+    public String jogo(Model model, RedirectAttributes redirectAttributes) {
         if (session.getPhase() == GamePhase.SETUP) {
             return "redirect:/";
         }
-        GameContent content = contentService.getContent();
-        List<BoardCell> cells = content.cells();
-        List<TeamView> teamViews = new ArrayList<>();
-        int max = Math.max(0, cells.size() - 1);
-        for (int i = 0; i < session.getTeams().size(); i++) {
-            TeamState t = session.getTeams().get(i);
-            int idx = Math.min(Math.max(t.getPositionIndex(), 0), max);
-            teamViews.add(new TeamView(t.getName(), i, cells.get(idx)));
+        try {
+            GameContent content = contentService.getContent();
+            List<BoardCell> cells = content.cells();
+            List<TeamView> teamViews = new ArrayList<>();
+            int max = Math.max(0, cells.size() - 1);
+            for (int i = 0; i < session.getTeams().size(); i++) {
+                TeamState t = session.getTeams().get(i);
+                int idx = Math.min(Math.max(t.getPositionIndex(), 0), max);
+                teamViews.add(new TeamView(t.getName(), i, cells.get(idx)));
+            }
+            model.addAttribute("session", session);
+            model.addAttribute("board", content.board());
+            model.addAttribute("teamViews", teamViews);
+            if (session.isAwaitingChallenge()) {
+                model.addAttribute("challenge", session.currentChallenge(content));
+                model.addAttribute("pendingCell", session.pendingCell(content));
+            } else {
+                model.addAttribute("challenge", null);
+                model.addAttribute("pendingCell", null);
+            }
+            return "game";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("erro", "Erro ao abrir o tabuleiro: " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
+            return "redirect:/";
         }
-        model.addAttribute("session", session);
-        model.addAttribute("board", content.board());
-        model.addAttribute("teamViews", teamViews);
-        if (session.isAwaitingChallenge()) {
-            model.addAttribute("challenge", session.currentChallenge(content));
-            model.addAttribute("pendingCell", session.pendingCell(content));
-        } else {
-            model.addAttribute("challenge", null);
-            model.addAttribute("pendingCell", null);
-        }
-        return "game";
     }
 
     @PostMapping("/jogo/rolar")
