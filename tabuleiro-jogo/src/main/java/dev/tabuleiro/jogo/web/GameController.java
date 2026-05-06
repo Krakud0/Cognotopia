@@ -63,7 +63,7 @@ public class GameController {
     }
 
     @GetMapping("/jogo")
-    public String jogo(Model model, RedirectAttributes redirectAttributes) {
+    public String jogo(Model model) {
         if (session.getPhase() == GamePhase.SETUP) {
             return "redirect:/";
         }
@@ -89,8 +89,9 @@ public class GameController {
             }
             return "game";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("erro", "Erro ao abrir o tabuleiro: " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
-            return "redirect:/";
+            model.addAttribute("phase", session.getPhase());
+            model.addAttribute("erro", "Erro ao abrir o tabuleiro: " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
+            return "index";
         }
     }
 
