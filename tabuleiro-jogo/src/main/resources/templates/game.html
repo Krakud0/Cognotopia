@@ -13,8 +13,7 @@
   <div class="wrap">
     <div th:if="${erro}" class="alert-error" role="alert" th:text="${erro}">Erro</div>
 
-    <div th:if="${session.phase != null and session.phase.name() == 'FINISHED'}" class="winner-banner" role="status"
-      aria-live="polite">
+    <div th:if="${session.phase?.name() == 'FINISHED'}" class="winner-banner" role="status" aria-live="polite">
       <span th:text="${session.currentTeam.name}">Participante</span> chegou à meta! Parabéns!
     </div>
 
@@ -23,7 +22,7 @@
         <p style="margin:0;font-size:0.85rem;font-weight:700;color:#0369a1">Cognotopia</p>
         <h1 style="margin:0;font-size:1.35rem">Tabuleiro</h1>
       </div>
-      <p class="turn-badge" th:if="${session.phase.name() == 'PLAYING'}">
+      <p class="turn-badge" th:if="${session.phase?.name() == 'PLAYING'}">
         Vez de: <span th:text="${session.currentTeam.name}">Dupla</span>
       </p>
     </header>
@@ -50,7 +49,7 @@
           </ol>
         </div>
 
-        <div class="sidebar-card" th:if="${session.phase.name() == 'PLAYING'}">
+        <div class="sidebar-card" th:if="${session.phase?.name() == 'PLAYING'}">
           <h2 class="sidebar-title">Dado</h2>
           <div class="dice" id="dice" th:attr="data-last-roll=${session.lastRoll != null ? session.lastRoll : ''}">
             <span th:text="${session.lastRoll != null ? session.lastRoll : '?'}">?</span>
