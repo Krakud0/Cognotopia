@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Cognotopia: fundo temporario do tabuleiro">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#7dd3fc"/>
+      <stop offset="50%" style="stop-color:#c4b5fd"/>
+      <stop offset="100%" style="stop-color:#fef08a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)" rx="20"/>
+  <text x="300" y="42" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="20" fill="#0f172a" font-weight="700">Cognotopia</text>
+  <text x="300" y="68" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="14" fill="#334155">Coloca a fotografia do tabuleiro em static/images/ e atualiza backgroundImage em board.json</text>
+  <path d="M 520 720 Q 400 680 280 720 T 120 620 Q 80 520 200 480 T 420 400 Q 520 320 440 240 T 200 180 Q 120 120 200 80" fill="none" stroke="#0f172a" stroke-width="4" stroke-dasharray="10 8" opacity="0.35"/>
+</svg>

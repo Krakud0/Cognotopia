@@ -1,0 +1,322 @@
+{
+  "challenges": [
+    {
+      "id": "verde-01",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que tem chave, mas não abre porta?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: o teclado (ou a chave de música). Aceite as duas."
+    },
+    {
+      "id": "verde-02",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que sobe e desce, mas nunca sai do lugar?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: a escada (ou o elevador, dependendo da interpretação)."
+    },
+    {
+      "id": "verde-03",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que tem uma boca e não fala?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: o rio (boca do rio)."
+    },
+    {
+      "id": "verde-04",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que é cheio de buracos, mas ainda assim segura água?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: a esponja."
+    },
+    {
+      "id": "verde-05",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que tem pescoço, mas não tem cabeça?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: a garrafa."
+    },
+    {
+      "id": "verde-06",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que fica mais molhado quanto mais seca?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: a toalha."
+    },
+    {
+      "id": "verde-07",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que é leve como uma pena, mas ninguém consegue segurar por muito tempo?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: a respiração."
+    },
+    {
+      "id": "verde-08",
+      "titulo": "Charada (Verde)",
+      "instrucoes": "O que você quebra só de falar o nome?",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Resposta: o silêncio."
+    },
+
+    {
+      "id": "laranja-01",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Dancem por 15 segundos como se estivessem na Lua.",
+      "dimensoes": ["FISICO", "EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 30,
+      "notaEducador": "Sem julgamentos: o objetivo é brincar e se soltar."
+    },
+    {
+      "id": "laranja-02",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Cantem juntos um refrão conhecido (vale inventar uma música curtinha).",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 40,
+      "notaEducador": "Se alguém tiver vergonha, pode cantar baixinho ou só fazer a batida com palmas."
+    },
+    {
+      "id": "laranja-03",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Equilibrem um lápis (ou caneta) no nariz por 5 segundos. Se não der, tentem na mão.",
+      "dimensoes": ["FISICO", "COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 45,
+      "notaEducador": "Adapte para equilíbrio na mão caso seja frustrante."
+    },
+    {
+      "id": "laranja-04",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Façam 10 palmas em ritmo: lento-lento-rápido-rápido-lento. A outra dupla tenta copiar.",
+      "dimensoes": ["COGNITIVO", "EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Boa para coordenação e atenção; deixe repetir uma vez."
+    },
+    {
+      "id": "laranja-05",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Façam estátua: quando alguém falar “CONGELAR!”, vocês param. Quando falar “DESCONGELAR!”, mexem de novo. 3 rodadas.",
+      "dimensoes": ["FISICO", "COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Mantenha o clima leve; combine para não empurrar."
+    },
+    {
+      "id": "laranja-06",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Caminhem por 6 passos como um robô (bem duro) e depois 6 passos como gelatina (bem molinho).",
+      "dimensoes": ["FISICO", "EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 45,
+      "notaEducador": "Garanta espaço livre; passos curtos."
+    },
+    {
+      "id": "laranja-07",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Façam 3 caretas diferentes. A outra dupla escolhe a mais engraçada (sem zoar, só rindo junto).",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 40,
+      "notaEducador": "Reforce: rir com o outro, não do outro."
+    },
+    {
+      "id": "laranja-08",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Jogo rápido: um começa dizendo uma palavra, o outro diz uma palavra que combine. Façam 6 pares (ex.: sol–praia).",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Ajuda vocabulário e associação; sem resposta “errada”."
+    },
+    {
+      "id": "laranja-09",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Desenho nas costas: um amigo usa o dedo para “desenhar” uma forma, letra ou número nas costas do outro. Quem recebe precisa adivinhar sem olhar. Façam 3 tentativas e depois troquem.",
+      "dimensoes": ["COGNITIVO", "EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 90,
+      "notaEducador": "Respeitem limites de toque; pode ser no braço/ombro se preferirem."
+    },
+    {
+      "id": "laranja-10",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Comando invertido: é o jogo do contrário! Se alguém disser “pule”, vocês ficam parados. Se disser “pare”, vocês pulam. Façam 8 comandos (vale errar e rir).",
+      "dimensoes": ["COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Mantenha comandos simples e em ritmo moderado."
+    },
+    {
+      "id": "laranja-11",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Espelho corporal (dupla): fiquem de frente. Um faz movimentos lentos (braços, cabeça, passos) e o outro copia como se fosse o reflexo. 30 segundos e troquem.",
+      "dimensoes": ["FISICO", "COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 80,
+      "notaEducador": "Movimentos lentos evitam tropeços e deixam o desafio mais fácil."
+    },
+    {
+      "id": "laranja-12",
+      "titulo": "Desafio (Laranja)",
+      "instrucoes": "Sequência de movimentos: um de vocês faz um movimento (ex.: bater palmas). O outro repete e adiciona mais um. Continuem até ter 6 movimentos na sequência sem errar.",
+      "dimensoes": ["COGNITIVO", "FISICO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 90,
+      "notaEducador": "Se ficar difícil, reduzam para 4 movimentos."
+    },
+
+    {
+      "id": "marrom-01",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "Qual foi a coisa mais legal do seu dia hoje?",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Se a criança não quiser responder, ela pode dizer “passo” sem penalidade."
+    },
+    {
+      "id": "marrom-02",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "Quando você fica bravo(a), o que te ajuda a se acalmar?",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 75,
+      "notaEducador": "Valide estratégias simples: respirar, pedir ajuda, ficar quietinho um pouco."
+    },
+    {
+      "id": "marrom-03",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "Se você pudesse aprender uma coisa nova agora, o que seria?",
+      "dimensoes": ["EMOCIONAL", "COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Incentive sonhos realistas e criativos; sem corrigir."
+    },
+    {
+      "id": "marrom-04",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "O que você prefere: brincar sozinho(a) ou com amigos? Por quê?",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 75,
+      "notaEducador": "Mostre que as duas opções são normais; evite rótulos."
+    },
+    {
+      "id": "marrom-05",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "Conte uma coisa que você faz bem e se orgulha.",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 60,
+      "notaEducador": "Se travar, ofereça exemplos: desenhar, ajudar, correr, organizar."
+    },
+    {
+      "id": "marrom-06",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "Se você tivesse um “botão mágico” pra melhorar uma coisa no mundo, o que mudaria?",
+      "dimensoes": ["EMOCIONAL", "COGNITIVO"],
+      "imagem": null,
+      "tempoSugeridoSeg": 75,
+      "notaEducador": "Boa pra empatia; mantenha leve (sem temas pesados)."
+    },
+    {
+      "id": "marrom-07",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "O que você gosta que as pessoas façam pra te mostrar amizade?",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 75,
+      "notaEducador": "Ótima pra habilidades sociais; respeitar limites de contato."
+    },
+    {
+      "id": "marrom-08",
+      "titulo": "Pergunta (Marrom)",
+      "instrucoes": "Qual é um medo pequeno que você já conseguiu vencer (ou quer vencer)?",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 90,
+      "notaEducador": "Não force; se surgir algo sensível, acolha e redirecione."
+    },
+
+    {
+      "id": "vermelho-roll-again-01",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Benefício: vocês jogam o dado novamente!",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 20,
+      "notaEducador": "O efeito já está aplicado pelo jogo."
+    },
+    {
+      "id": "vermelho-roll-again-02",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Benefício: joguem mais uma vez. Caprichem na torcida!",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 20,
+      "notaEducador": "Reforce jogo limpo: torcer sem provocar."
+    },
+    {
+      "id": "vermelho-miss-turn-01",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Armadilha: na próxima rodada, vocês ficam sem jogar (passa a vez).",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 20,
+      "notaEducador": "Ajude a lidar com frustração: “é só uma rodada, já já volta”."
+    },
+    {
+      "id": "vermelho-miss-turn-02",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Armadilha: vocês perdem a próxima vez. Aproveitem pra planejar a torcida!",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 20,
+      "notaEducador": "Transforme em pausa positiva, não em punição."
+    },
+    {
+      "id": "vermelho-miss-turn-03",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Armadilha: vocês ficam uma rodada sem jogar. Enquanto isso, escolham uma frase de incentivo para outra dupla.",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 30,
+      "notaEducador": "Estimule cooperação para reduzir frustração."
+    },
+    {
+      "id": "vermelho-all-back-3",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Armadilha coletiva: todas as duplas voltam 3 casas (o jogo já moveu). Respirem fundo e continuem!",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 30,
+      "notaEducador": "Boa para cooperação: incentive frases de apoio entre as duplas."
+    },
+    {
+      "id": "vermelho-roll-again-03",
+      "titulo": "Efeito (Vermelho)",
+      "instrucoes": "Benefício: joguem de novo! Antes de rolar, façam um “toque de parceria” (soquinho ou palma).",
+      "dimensoes": ["EMOCIONAL"],
+      "imagem": null,
+      "tempoSugeridoSeg": 20,
+      "notaEducador": "Evite contato se alguém não quiser; pode ser só um gesto no ar."
+    }
+  ]
+}
