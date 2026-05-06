@@ -13,7 +13,8 @@
   <div class="wrap">
     <div th:if="${erro}" class="alert-error" role="alert" th:text="${erro}">Erro</div>
 
-    <div th:if="${session.phase?.name() == 'FINISHED'}" class="winner-banner" role="status" aria-live="polite">
+    <div th:if="${session.phase != null and session.phase.name() == 'FINISHED'}" class="winner-banner" role="status"
+      aria-live="polite">
       <span th:text="${session.currentTeam.name}">Participante</span> chegou à meta! Parabéns!
     </div>
 
