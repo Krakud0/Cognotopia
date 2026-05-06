@@ -111,13 +111,13 @@
       const isJogador = tipo.value === "JOGADOR";
       const label = isJogador ? "jogadores" : "duplas";
       const singular = isJogador ? "Jogador" : "Dupla";
-      qtdLabel.textContent = `Quantos ${label} vão jogar?`;
-      hint.textContent = `Opcional: escolham nomes divertidos para cada ${isJogador ? "jogador" : "dupla"}.`;
-      Array.from(qtdSelect.options).forEach((opt) => {
+      qtdLabel.textContent = "Quantos " + label + " vão jogar?";
+      hint.textContent = "Opcional: escolham nomes divertidos para cada " + (isJogador ? "jogador" : "dupla") + ".";
+      Array.from(qtdSelect.options).forEach(function(opt) {
         const n = opt.getAttribute("data-n") || opt.value;
-        opt.textContent = `${n} ${label}`;
+        opt.textContent = n + " " + label;
       });
-      labels.forEach((el, idx) => (el.textContent = `${singular} ${idx + 1}`));
+      labels.forEach(function(el, idx) { el.textContent = singular + " " + (idx + 1); });
       if (isJogador) {
         inputs[0].placeholder = "Ex.: Ana";
         inputs[1].placeholder = "Ex.: Bruno";
