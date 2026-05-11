@@ -51,13 +51,10 @@
 
         <div class="sidebar-card" th:if="${session.phase?.name() == 'PLAYING'}">
           <h2 class="sidebar-title">Dado</h2>
-          <div class="dice" id="dice" th:attr="data-last-roll=${session.lastRoll != null ? session.lastRoll : ''}">
-            <span th:text="${session.lastRoll != null ? session.lastRoll : '?'}">?</span>
+          <div class="dice-row">
+            <button type="button" id="roll-btn" class="btn btn-dice">🎲 Rolar dado</button>
+            <span id="dice-result" class="dice-result">Clique para rolar!</span>
           </div>
-          <form th:if="${!session.awaitingChallenge and !session.awaitingOpponentSelection}" th:action="@{/jogo/rolar}"
-            method="post" style="margin-top:0.75rem">
-            <button type="submit" class="btn" style="width:100%">Rolar</button>
-          </form>
           <p th:if="${session.awaitingChallenge}" style="margin:0.75rem 0 0;font-weight:600;color:#3730a3">
             Resolva a ação da casa para continuar.
           </p>
