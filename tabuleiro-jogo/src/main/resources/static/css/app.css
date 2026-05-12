@@ -278,15 +278,12 @@ a:focus-visible {
 
 .board-stage {
   position: relative;
-  width: 112%;
-  aspect-ratio: 3 / 4;
+  width: 100%;
 }
 
 .board-stage img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left top;
+  height: auto;
   display: block;
 }
 
