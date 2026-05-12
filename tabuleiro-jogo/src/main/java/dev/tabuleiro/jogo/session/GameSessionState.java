@@ -115,7 +115,13 @@ public class GameSessionState implements Serializable {
         int roll = ThreadLocalRandom.current().nextInt(1, 7);
         lastRoll = roll;
 
-        int pos = Math.min(current.getPositionIndex() + roll, lastIdx);
+        int targetPos = current.getPositionIndex() + roll;
+        if (targetPos > lastIdx) {
+            advanceTurnSkipExtra();
+            return "Sua dupla tirou " + roll + " mas precisava de " + (lastIdx - current.getPositionIndex()) + " para chegar ao fim. Jogada perdida!";
+        }
+
+        int pos = targetPos;
         resolvePositionAfterRoll(content, current, pos, lastIdx);
 
         if (phase == GamePhase.FINISHED) {
@@ -128,7 +134,9 @@ public class GameSessionState implements Serializable {
             return null;
         }
 
-        queueLandingAction(content);
+        if (!awaitingChallenge) {
+            queueLandingAction(content);
+        }
         return null;
     }
 

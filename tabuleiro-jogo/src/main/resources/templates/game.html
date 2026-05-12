@@ -28,12 +28,14 @@
     </header>
 
     <div class="game-layout">
-      <section id="tabuleiro-principal" class="board-stage" aria-label="Tabuleiro e posição das duplas">
-        <img th:src="@{|${board.backgroundImage}|}" src="/images/board-bg.svg" alt="Tabuleiro Cognotopia" />
-        <div th:each="tv : ${teamViews}" class="token" th:classappend="'token-' + ${tv.colorIndex}"
-          th:style="|left: ${tv.cell.leftPct}%; top: ${tv.cell.topPct}%; transform: translate(calc(-50% + ${tv.colorIndex * 14}px), -50%);|"
-          th:attr="aria-label=${tv.name + ' na casa ' + tv.cell.id}">
-          <span class="token-label" th:text="${tv.colorIndex + 1}">1</span>
+      <section id="tabuleiro-principal" class="board-viewport" aria-label="Tabuleiro e posição das duplas">
+        <div class="board-stage">
+          <img th:src="@{|${board.backgroundImage}|}" src="/images/board-bg.svg" alt="Tabuleiro Cognotopia" />
+          <div th:each="tv : ${teamViews}" class="token" th:classappend="'token-' + ${tv.colorIndex}"
+            th:style="|left: ${tv.cell.leftPct}%; top: ${tv.cell.topPct}%; transform: translate(calc(-50% + ${tv.colorIndex * 14}px), -50%);|"
+            th:attr="aria-label=${tv.name + ' na casa ' + tv.cell.id}">
+            <span class="token-label" th:text="${tv.colorIndex + 1}">1</span>
+          </div>
         </div>
       </section>
 
