@@ -52,9 +52,16 @@
         <div class="sidebar-card" th:if="${gameSession.phase?.name() == 'PLAYING'}">
           <h2 class="sidebar-title">Dado</h2>
           <div class="dice-row">
-            <button type="button" id="roll-btn" class="btn btn-dice">🎲 Rolar dado</button>
-            <span id="dice-result" class="dice-result">Clique para rolar!</span>
+            <button type="button" id="roll-btn" class="btn btn-dice"
+              th:if="${!gameSession.awaitingChallenge and !gameSession.awaitingOpponentSelection}">🎲 Rolar dado</button>
+            <span id="dice-result" class="dice-result"
+              th:if="${gameSession.lastRoll != null}"
+              th:text="'Ande ' + ${gameSession.lastRoll} + ' casas!'"
+              th:classappend="dice-result-show">Clique para rolar!</span>
+            <span id="dice-result" class="dice-result"
+              th:if="${gameSession.lastRoll == null and !gameSession.awaitingChallenge and !gameSession.awaitingOpponentSelection}">Clique para rolar!</span>
           </div>
+          <form id="roll-form" th:action="@{/jogo/rolar}" method="post" style="display:none"></form>
           <p th:if="${gameSession.awaitingChallenge}" style="margin:0.75rem 0 0;font-weight:600;color:#3730a3">
             Resolva a ação da casa para continuar.
           </p>
