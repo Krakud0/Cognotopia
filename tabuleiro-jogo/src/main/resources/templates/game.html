@@ -13,8 +13,8 @@
   <div class="wrap">
     <div th:if="${erro}" class="alert-error" role="alert" th:text="${erro}">Erro</div>
 
-    <div th:if="${session.phase?.name() == 'FINISHED'}" class="winner-banner" role="status" aria-live="polite">
-      <span th:text="${session.currentTeam.name}">Participante</span> chegou à meta! Parabéns!
+    <div th:if="${gameSession.phase?.name() == 'FINISHED'}" class="winner-banner" role="status" aria-live="polite">
+      <span th:text="${gameSession.currentTeam.name}">Participante</span> chegou à meta! Parabéns!
     </div>
 
     <header class="game-header">
@@ -22,8 +22,8 @@
         <p style="margin:0;font-size:0.85rem;font-weight:700;color:#0369a1">Cognotopia</p>
         <h1 style="margin:0;font-size:1.35rem">Tabuleiro</h1>
       </div>
-      <p class="turn-badge" th:if="${session.phase?.name() == 'PLAYING'}">
-        Vez de: <span th:text="${session.currentTeam.name}">Dupla</span>
+      <p class="turn-badge" th:if="${gameSession.phase?.name() == 'PLAYING'}">
+        Vez de: <span th:text="${gameSession.currentTeam.name}">Dupla</span>
       </p>
     </header>
 
@@ -39,26 +39,26 @@
 
       <aside class="sidebar" aria-label="Jogadores e controles">
         <div class="sidebar-card">
-          <h2 class="sidebar-title" th:text="${session.participantLabel + 's'}">Participantes</h2>
+          <h2 class="sidebar-title" th:text="${gameSession.participantLabel + 's'}">Participantes</h2>
           <ol class="team-list">
-            <li th:each="t, iter : ${session.teams}"
-              th:classappend="${iter.index == session.currentTeamIndex ? 'active' : ''}">
+            <li th:each="t, iter : ${gameSession.teams}"
+              th:classappend="${iter.index == gameSession.currentTeamIndex ? 'active' : ''}">
               <span class="team-dot" th:classappend="'token-' + ${iter.index}"></span>
               <span th:text="${t.name}">Dupla</span>
             </li>
           </ol>
         </div>
 
-        <div class="sidebar-card" th:if="${session.phase?.name() == 'PLAYING'}">
+        <div class="sidebar-card" th:if="${gameSession.phase?.name() == 'PLAYING'}">
           <h2 class="sidebar-title">Dado</h2>
           <div class="dice-row">
             <button type="button" id="roll-btn" class="btn btn-dice">🎲 Rolar dado</button>
             <span id="dice-result" class="dice-result">Clique para rolar!</span>
           </div>
-          <p th:if="${session.awaitingChallenge}" style="margin:0.75rem 0 0;font-weight:600;color:#3730a3">
+          <p th:if="${gameSession.awaitingChallenge}" style="margin:0.75rem 0 0;font-weight:600;color:#3730a3">
             Resolva a ação da casa para continuar.
           </p>
-          <p th:if="${session.awaitingOpponentSelection}" style="margin:0.75rem 0 0;font-weight:600;color:#9a3412">
+          <p th:if="${gameSession.awaitingOpponentSelection}" style="margin:0.75rem 0 0;font-weight:600;color:#9a3412">
             Escolham uma dupla adversária para voltar 4 casas.
           </p>
         </div>
@@ -83,7 +83,7 @@
       </form>
     </div>
 
-    <dialog class="challenge-dialog" th:if="${session.awaitingChallenge}" th:open="${session.awaitingChallenge}"
+    <dialog class="challenge-dialog" th:if="${gameSession.awaitingChallenge}" th:open="${gameSession.awaitingChallenge}"
       aria-labelledby="challenge-title" aria-modal="true">
       <div class="challenge-inner">
         <th:block th:with="cell=${pendingCell}">
@@ -151,15 +151,15 @@
       </div>
     </dialog>
 
-    <dialog class="challenge-dialog opponent-dialog" th:if="${session.awaitingOpponentSelection}"
-      th:open="${session.awaitingOpponentSelection}" aria-labelledby="opponent-title" aria-modal="true">
+    <dialog class="challenge-dialog opponent-dialog" th:if="${gameSession.awaitingOpponentSelection}"
+      th:open="${gameSession.awaitingOpponentSelection}" aria-labelledby="opponent-title" aria-modal="true">
       <div class="challenge-inner">
         <h2 id="opponent-title">Escolher adversários</h2>
         <p>Como no tabuleiro físico: escolham <strong>uma dupla adversária</strong>. Ela recua <strong>4 casas</strong>
           (o jogo atualiza o pinho).</p>
         <ul class="opponent-list">
-          <th:block th:each="t, iter : ${session.teams}">
-            <li th:if="${iter.index != session.currentTeamIndex}">
+          <th:block th:each="t, iter : ${gameSession.teams}">
+            <li th:if="${iter.index != gameSession.currentTeamIndex}">
               <form th:action="@{/jogo/adversario}" method="post">
                 <input type="hidden" name="indiceDupla" th:value="${iter.index}" />
                 <button type="submit" class="btn btn-secondary opponent-btn" th:text="${t.name}">Dupla</button>
