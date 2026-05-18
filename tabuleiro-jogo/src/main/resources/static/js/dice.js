@@ -55,11 +55,8 @@
       });
       sessionStorage.setItem("tokenPositions", JSON.stringify(currentPositions));
 
-      // Gera número aleatório de 1 a 6 para exibição visual
-      var result = Math.floor(Math.random() * 6) + 1;
-
-      // Exibe o resultado com animação
-      resultText.textContent = "Ande " + result + " casas!";
+      // Exibe o status de rolagem com animação
+      resultText.textContent = "Rolando...";
       resultText.classList.remove("dice-result-show");
       // Force reflow para reiniciar a animação
       void resultText.offsetWidth;

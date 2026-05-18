@@ -40,7 +40,7 @@
       </section>
 
       <aside class="sidebar" aria-label="Jogadores e controles">
-        
+
         <div class="sidebar-card challenge-box" th:if="${gameSession.awaitingChallenge}">
           <div class="challenge-inner">
             <th:block th:with="cell=${pendingCell}">
@@ -61,7 +61,7 @@
                 <div th:if="${cell != null and cell.color.name() == 'VERDE'}" style="margin-top:0.75rem">
                   <label for="resposta" style="font-weight:700">Resposta (opcional)</label>
                   <input id="resposta" type="text" name="resposta" maxlength="80" autocomplete="off"
-                    placeholder="Escreva a resposta aqui (não é corrigido automaticamente)" />
+                    placeholder="Escreva a resposta aqui " />
                 </div>
 
                 <p th:if="${challenge.tempoSugeridoSeg != null}" style="color:#64748b;font-size:0.95rem">
@@ -90,14 +90,16 @@
 
                 <th:block th:if="${cell != null and cell.color.name() == 'LARANJA'}">
                   <form th:action="@{/jogo/acao/trocar}" method="post" style="flex:1">
-                    <button type="submit" class="btn" style="width:100%;background:#eab308;color:#0f172a">Trocar desafio </button>
+                    <button type="submit" class="btn" style="width:100%;background:#eab308;color:#0f172a">Trocar desafio
+                    </button>
                   </form>
                   <form th:action="@{/jogo/desafio/concluir}" method="post" style="flex:1">
                     <button type="submit" class="btn btn-success" style="width:100%">Concluir</button>
                   </form>
                 </th:block>
 
-                <th:block th:if="${cell != null and (cell.color.name() == 'MARROM' or cell.color.name() == 'VERMELHO')}">
+                <th:block
+                  th:if="${cell != null and (cell.color.name() == 'MARROM' or cell.color.name() == 'VERMELHO')}">
                   <form th:action="@{/jogo/desafio/concluir}" method="post" style="flex:1">
                     <button type="submit" class="btn btn-success" style="width:100%">OK</button>
                   </form>
@@ -110,7 +112,8 @@
         <div class="sidebar-card challenge-box" th:if="${gameSession.awaitingOpponentSelection}">
           <div class="challenge-inner">
             <h2 id="opponent-title">Escolher adversários</h2>
-            <p>Como no tabuleiro físico: escolham <strong>uma dupla adversária</strong>. Ela recua <strong>4 casas</strong>
+            <p>Como no tabuleiro físico: escolham <strong>uma dupla adversária</strong>. Ela recua <strong>4
+                casas</strong>
               (o jogo atualiza o pinho).</p>
             <ul class="opponent-list">
               <th:block th:each="t, iter : ${gameSession.teams}">
