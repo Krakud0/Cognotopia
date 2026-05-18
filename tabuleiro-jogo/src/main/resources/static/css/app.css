@@ -420,25 +420,25 @@ a:focus-visible {
   color: #92400e;
 }
 
-dialog.challenge-dialog {
-  border: none;
-  border-radius: var(--radius);
-  padding: 0;
-  max-width: min(520px, 94vw);
-  box-shadow: var(--shadow);
+.challenge-box {
+  border: 3px solid #eab308;
+  background-color: #fef9c3;
+  animation: slide-down 0.3s ease-out;
 }
 
-dialog.challenge-dialog::backdrop {
-  background: rgba(15, 23, 42, 0.45);
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .challenge-inner {
-  padding: 1.5rem;
+  padding: 0.5rem;
 }
 
-.challenge-dialog h2 {
+.challenge-box h2 {
   margin: 0 0 0.75rem;
   font-size: 1.35rem;
+  color: #854d0e;
 }
 
 .edu-note {
